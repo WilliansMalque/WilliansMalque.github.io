@@ -1,237 +1,641 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Willians Malque — Portafolio</title>
-  <meta name="description" content="Willians Malque — Desarrollador Web, Móvil e IoT. Portafolio profesional, proyectos y contacto.">
-  <meta property="og:title" content="Willians Malque — Portafolio">
-  <meta property="og:description" content="Portafolio de Willians Malque. Proyectos, experiencia y contacto.">
-  <meta property="og:image" content="/og-image.png">
-  <link rel="icon" href="/favicon.ico">
-  <style>
-    :root{
-      --bg:#0b0f13; --card:#0f1720; --muted:#9aa4b2; --accent:#06b6d4; --glass: rgba(255,255,255,0.03);
-      --maxw:1100px; --radius:14px; --gap:20px;
-      color-scheme: dark;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial; background:linear-gradient(180deg,#061018 0%, var(--bg) 100%); color:#e6eef6}
-    a{color:var(--accent);text-decoration:none}
-    .container{max-width:var(--maxw);margin:36px auto;padding:20px}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Portafolio de Willians Malque - Desarrollador Full Stack especializado en React, Node.js, Flutter y Ciberseguridad">
+    <meta name="author" content="Willians Malque">
 
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .avatar{width:68px;height:68px;border-radius:12px;background:linear-gradient(135deg,#0ea5a9,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700}
-    h1{margin:0;font-size:1.5rem}
-    p.lead{margin:6px 0 0;color:var(--muted)}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    nav{display:flex;gap:10px;align-items:center}
-    .btn{background:transparent;border:1px solid transparent;padding:8px 12px;border-radius:10px;cursor:pointer}
-    .ghost{border:1px solid rgba(255,255,255,0.06)}
+    <title>Portafolio - Willians Malque | Desarrollador Full Stack</title>
 
-    main{margin-top:26px;display:grid;grid-template-columns:1fr 360px;gap:var(--gap)}
-    @media(max-width:920px){main{grid-template-columns:1fr} .sidebar{order:2}}
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --text-dark: #2c3e50;
+            --bg-light: #f8f9fa;
+        }
 
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:18px;border-radius:var(--radius);box-shadow:0 6px 20px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
 
-    /* Hero */
-    .hero{display:flex;flex-direction:column;gap:14px}
-    .hero h2{font-size:1.25rem;margin:0}
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-size:0.85rem;color:var(--muted);}
+        .sidebar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 320px;
+            color: white;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+        }
 
-    /* Projects grid */
-    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:12px}
-    @media(max-width:700px){.projects{grid-template-columns:1fr}}
-    .project{padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,255,255,0.03)}
-    .project h3{margin:0;font-size:1rem}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .tag{font-size:0.75rem;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted)}
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.2);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
 
-    /* Sidebar */
-    .sidebar{position:relative}
-    .profile-meta{display:flex;flex-direction:column;gap:12px}
-    .stat{display:flex;justify-content:space-between;align-items:center}
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
 
-    /* Contact */
-    form{display:flex;flex-direction:column;gap:10px}
-    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button.primary{padding:10px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;color:#001;cursor:pointer;font-weight:600}
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
 
-    footer{margin-top:32px;text-align:center;color:var(--muted);font-size:0.9rem}
+        .sidebar-nav li {
+            margin: 10px 0;
+        }
 
-    /* small utilities */
-    .muted{color:var(--muted)}
-    .center{display:flex;align-items:center;justify-content:center}
+        .sidebar-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
 
-    /* animation */
-    .fade-up{opacity:0;transform:translateY(8px);animation:fadeUp 600ms ease forwards}
-    @keyframes fadeUp{to{opacity:1;transform:none}}
+        .sidebar-nav a:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            padding-left: 30px;
+        }
 
-    .toggle{display:inline-flex;align-items:center;gap:8px}
-    .repo-list{display:flex;flex-direction:column;gap:12px;margin-top:12px}
-    .small{font-size:0.85rem}
-  </style>
+        .main-content {
+            margin-left: 320px;
+            padding: 40px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+        }
+
+        .card-custom {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .tech-icon {
+            font-size: 3.5rem;
+            margin: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .tech-icon:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--secondary-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--secondary-color);
+        }
+
+        .timeline-date {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .skill-badge {
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .social-links a {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: white;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--secondary-color), #5dade2);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+
+        .experience-card {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+
+        .badge-cert {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 8px;
+            font-weight: 500;
+        }
+
+        .contact-btn {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <header class="fade-up">
-      <div class="brand">
-        <div class="avatar">
-  <img src="fotografia.png" alt="Willians Malque" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">
-</div>
 
-        <div>
-          <h1>Willians Leonardo Malque Zurita</h1>
-          <p class="lead">Desarrollador Web, Móvil e IoT — Enfoque en Ciberseguridad & Arquitectura Limpia</p>
-        </div>
-      </div>
-      <nav>
-        <a class="btn ghost" href="https://github.com/WilliansMalque" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/willians-malque" target="_blank" rel="noopener">LinkedIn</a>
-        <button class="btn" id="themeToggle">Dark/Light</button>
-      </nav>
-    </header>
-
-    <main>
-      <section class="card hero fade-up">
-        <h2>Hola 👋, soy Willians — creo software que funciona y es seguro.</h2>
-        <p class="muted">Egresado en Diseño y Desarrollo de Software (TECSUP). Trabajo con .NET, Node.js, React y MySQL. Actualmente explorando análisis de datos y mejores prácticas de seguridad.</p>
-
-        <div class="chips">
-          <span class="chip">.NET 8</span>
-          <span class="chip">ASP.NET Core</span>
-          <span class="chip">Node.js</span>
-          <span class="chip">React</span>
-          <span class="chip">MySQL</span>
-          <span class="chip">Docker</span>
+    <!-- Sidebar -->
+    <div class="sidebar d-flex flex-column align-items-center py-4">
+        <img src="fotografia.png" alt="Willians Malque" class="profile-img mb-3">
+        
+        <h2 class="text-center mb-2">Willians Malque</h2>
+        <p class="text-center text-white-50 mb-3">Desarrollador Full Stack</p>
+        
+        <div class="social-links mb-4">
+            <a href="https://github.com/WilliansMalquetecsupaqp" target="_blank" title="GitHub">
+                <i class="bi bi-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/willians-malque" target="_blank" title="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="mailto:williansmalque76@gmail.com" title="Email">
+                <i class="bi bi-envelope"></i>
+            </a>
         </div>
 
-        <div style="margin-top:14px;display:flex;gap:12px">
-          <a class="btn ghost" href="#projects">Ver proyectos</a>
-          <a class="btn" href="mailto:williansmalque76@gmail.com">Contactarme</a>
+        <ul class="sidebar-nav">
+            <li><a href="#welcome"><i class="bi bi-house-door me-2"></i>Inicio</a></li>
+            <li><a href="#about"><i class="bi bi-person me-2"></i>Sobre Mí</a></li>
+            <li><a href="#experience"><i class="bi bi-briefcase me-2"></i>Experiencia</a></li>
+            <li><a href="#education"><i class="bi bi-mortarboard me-2"></i>Formación</a></li>
+            <li><a href="#skills"><i class="bi bi-code-slash me-2"></i>Habilidades</a></li>
+            <li><a href="#timeline"><i class="bi bi-clock-history me-2"></i>Trayectoria</a></li>
+            <li><a href="#contact"><i class="bi bi-chat-dots me-2"></i>Contacto</a></li>
+        </ul>
+
+        <div class="mt-auto">
+            <p class="text-white-50 text-center small">© 2025 Willians Malque</p>
         </div>
+    </div>
 
-        <div class="card" style="margin-top:16px">
-          <h3 style="margin:0 0 8px 0">Proyectos destacados</h3>
-          <div id="projects" class="projects">
-            <!-- Projects will be injected by JS -->
-          </div>
-        </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Welcome Section -->
+        <section id="welcome" class="mb-5">
+            <h1 class="display-4 fw-bold mb-3">¡Hola! 👋</h1>
+            <div class="card-custom">
+                <div class="card-body p-4">
+                    <h4 class="mb-3">Bienvenido a mi portafolio digital</h4>
+                    <p class="lead mb-3">
+                        Soy un <strong>Desarrollador Full Stack</strong> egresado de TECSUP con experiencia en desarrollo web, móvil e IoT. 
+                        Me especializo en crear soluciones tecnológicas innovadoras con enfoque en <strong>seguridad y eficiencia</strong>.
+                    </p>
+                    
+                    <div class="row g-3 mt-3">
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-number">2+</div>
+                                <p class="mb-0">Años de Experiencia</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-number">10+</div>
+                                <p class="mb-0">Proyectos Completados</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="stat-card">
+                                <div class="stat-number">5+</div>
+                                <p class="mb-0">Certificaciones</p>
+                            </div>
+                        </div>
+                    </div>
 
-      </section>
+                    <div class="mt-4">
+                        <h5>Objetivos de este portafolio:</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Compartir mi experiencia y proyectos profesionales</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Mantener informados sobre nuevos desarrollos y certificaciones</li>
+                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Conectar con profesionales y oportunidades laborales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-      <aside class="sidebar">
-        <div class="card profile-meta fade-up">
-          <h3 style="margin:0">Perfil</h3>
-          <p class="muted small">Egresado de TECSUP con experiencia en desarrollo web, móvil e IoT. Interés en ciberseguridad, análisis de datos y mejora continua.</p>
+        <!-- About Section -->
+        <section id="about" class="mb-5">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="card-custom">
+                <div class="card-body p-4">
+                    <p class="lead">
+                        Mi nombre es <strong>Willians Leonardo Malque Zurita</strong>, tengo 23 años y soy egresado de la carrera de 
+                        <strong>Diseño y Desarrollo de Software</strong> en TECSUP, Arequipa.
+                    </p>
+                    <p>
+                        Soy un profesional proactivo y comprometido con la innovación tecnológica. Me caracterizo por aplicar 
+                        metodologías ágiles y mantener un enfoque analítico orientado a la calidad, eficiencia y protección 
+                        de los sistemas.
+                    </p>
+                    
+                    <h5 class="mt-4 mb-3">Áreas de Interés:</h5>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="text-center p-3">
+                                <i class="bi bi-code-square" style="font-size: 3rem; color: var(--secondary-color);"></i>
+                                <h6 class="mt-2">Desarrollo Web & Móvil</h6>
+                                <p class="small text-muted">React, Node.js, Flutter</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3">
+                                <i class="bi bi-shield-lock" style="font-size: 3rem; color: var(--accent-color);"></i>
+                                <h6 class="mt-2">Ciberseguridad</h6>
+                                <p class="small text-muted">Protección de sistemas</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3">
+                                <i class="bi bi-diagram-3" style="font-size: 3rem; color: #27ae60;"></i>
+                                <h6 class="mt-2">IoT & Cloud</h6>
+                                <p class="small text-muted">Soluciones conectadas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-          <div class="stat"><span class="muted">Ubicación</span><strong>Arequipa, Perú</strong></div>
-          <div class="stat"><span class="muted">Email</span><a href="mailto:williansmalque76@gmail.com">williansmalque76@gmail.com</a></div>
-          <div class="stat"><span class="muted">Teléfono</span><strong>+51 940185343</strong></div>
+        <!-- Experience Section -->
+        <section id="experience" class="mb-5">
+            <h2 class="section-title">Experiencia Laboral</h2>
+            
+            <div class="experience-card">
+                <h5><strong>Grupo MOSS S.R.L</strong> - Pasante en Innovación e Investigación</h5>
+                <p class="text-muted mb-2"><i class="bi bi-calendar3 me-2"></i>Diciembre 2024 - Enero 2025 | Remoto</p>
+                <ul>
+                    <li>Diseñé base de datos en <strong>MySQL</strong> y desarrollé APIs con <strong>Node.js</strong> para gestión de eventos deportivos</li>
+                    <li>Implementé interfaz con <strong>React</strong> y estructuré documentación técnica</li>
+                    <li>Apliqué metodología <strong>Scrum</strong> en trabajo remoto usando Microsoft Teams</li>
+                    <li class="text-success fw-bold">✓ Logré 90% de avance del sistema y mejoré en 70% la eficiencia del proceso de inscripción</li>
+                </ul>
+            </div>
 
-          <div style="margin-top:10px" class="center">
-            <img src="https://github-readme-stats.vercel.app/api?username=WilliansMalque&show_icons=true&theme=tokyonight&hide_border=true" alt="github-stats" style="width:100%">
-          </div>
-        </div>
+            <div class="experience-card">
+                <h5><strong>Fibertel Networks S.A.C</strong> - Pasante en Innovación e Investigación</h5>
+                <p class="text-muted mb-2"><i class="bi bi-calendar3 me-2"></i>Julio 2024 - Agosto 2024 | Arequipa</p>
+                <ul>
+                    <li>Desarrollé réplica funcional del sitio web de Daytona en <strong>WordPress</strong> usando tema Divi</li>
+                    <li>Construí más de 40 páginas con estructuras modulares y contenidos diversos</li>
+                    <li>Realicé pruebas de navegación, rendimiento y diseño responsivo</li>
+                    <li class="text-success fw-bold">✓ Alcancé 95% de similitud en funcionalidad y experiencia de usuario</li>
+                </ul>
+            </div>
 
-        <div class="card fade-up" style="margin-top:14px">
-          <h3 style="margin:0">Habilidades</h3>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
-            <div class="small">ASP.NET Core <span class="muted">— avanzado</span></div>
-            <div class="small">Node.js / Express <span class="muted">— intermedio</span></div>
-            <div class="small">React <span class="muted">— intermedio</span></div>
-            <div class="small">MySQL <span class="muted">— avanzado</span></div>
-            <div class="small">Ciberseguridad <span class="muted">— fundamentos</span></div>
-          </div>
-        </div>
+            <div class="experience-card">
+                <h5><strong>ONPE</strong> - Coordinador de Mesa Electoral</h5>
+                <p class="text-muted mb-2"><i class="bi bi-calendar3 me-2"></i>Septiembre 2022 - Octubre 2022 | Arequipa</p>
+                <ul>
+                    <li>Coordiné 3 mesas de sufragio y capacité a 18 miembros de mesa</li>
+                    <li>Gestioné logística electoral y resolví incidentes en tiempo real</li>
+                    <li class="text-success fw-bold">✓ Logré 95% de cumplimiento y resolución del 90% de incidentes</li>
+                </ul>
+            </div>
+        </section>
 
-        <div class="card fade-up" style="margin-top:14px">
-          <h3 style="margin:0">Contacto</h3>
-          <p class="muted small">Puedes escribirme directamente o usar el formulario.</p>
-          <form id="contactForm" action="#" onsubmit="handleContact(event)">
-            <input type="text" id="name" placeholder="Tu nombre" required>
-            <input type="email" id="email" placeholder="Tu email" required>
-            <textarea id="message" rows="4" placeholder="Mensaje" required></textarea>
-            <button type="submit" class="primary">Enviar (mailto)</button>
-          </form>
-        </div>
+        <!-- Education Section -->
+        <section id="education" class="mb-5">
+            <h2 class="section-title">Formación Académica</h2>
+            
+            <div class="card-custom">
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="bi bi-mortarboard-fill" style="font-size: 3rem; color: var(--secondary-color);"></i>
+                        <div class="ms-3">
+                            <h5 class="mb-1">TECSUP - Instituto Superior Tecnológico</h5>
+                            <p class="text-muted mb-0">Arequipa, Perú</p>
+                        </div>
+                    </div>
+                    <h6 class="text-primary">Carrera: Diseño y Desarrollo de Software</h6>
+                    <p class="mb-3"><strong>Estado:</strong> Egresado | 2022 - 2025</p>
+                    
+                    <h6 class="mt-4 mb-3">Certificaciones Obtenidas:</h6>
+                    <div>
+                        <span class="badge-cert"><i class="bi bi-shield-check me-2"></i>Ciberseguridad</span>
+                        <span class="badge-cert"><i class="bi bi-cloud me-2"></i>Cloud Computing</span>
+                        <span class="badge-cert"><i class="bi bi-award me-2"></i>ISO 9001</span>
+                        <span class="badge-cert"><i class="bi bi-graph-up me-2"></i>Lean Six Sigma White Belt</span>
+                        <span class="badge-cert"><i class="bi bi-kanban me-2"></i>Scrum Fundamentals</span>
+                    </div>
+                </div>
+            </div>
 
-      </aside>
+            <h5 class="mt-4 mb-3">Idiomas</h5>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="card-custom">
+                        <div class="card-body text-center">
+                            <i class="bi bi-translate" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h6 class="mt-2">Español</h6>
+                            <p class="text-muted mb-0">Nativo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-custom">
+                        <div class="card-body text-center">
+                            <i class="bi bi-globe" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <h6 class="mt-2">Inglés</h6>
+                            <p class="text-muted mb-0">Intermedio (B1)</p>
+                            <small class="text-muted">Certificado por Conversa Language School - TECSUP</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    </main>
+        <!-- Skills Section -->
+        <section id="skills" class="mb-5">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            
+            <h5 class="mb-3">Lenguajes de Programación & Frameworks</h5>
+            <div class="card-custom">
+                <div class="card-body p-4">
+                    <div class="row text-center g-3">
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-react-original colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">React</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-nodejs-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">Node.js</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-flutter-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">Flutter</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-dotnetcore-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">ASP.NET Core</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-python-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">Python</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-java-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">Java</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-javascript-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">JavaScript</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-mysql-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">MySQL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <footer class="fade-up">
-      <p class="muted">© <span id="year"></span> Willians Malque — Desarrollador. <a href="https://williansmalque.github.io">Portafolio</a></p>
-    </footer>
-  </div>
+            <h5 class="mt-4 mb-3">Herramientas & Tecnologías</h5>
+            <div class="card-custom">
+                <div class="card-body p-4">
+                    <div class="row text-center g-3">
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-git-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">Git</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-github-original tech-icon"></i>
+                            <p class="mb-0 fw-bold">GitHub</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="devicon-wordpress-plain colored tech-icon"></i>
+                            <p class="mb-0 fw-bold">WordPress</p>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <i class="fas fa-vial tech-icon" style="color: #ef5b25;"></i>
+                            <p class="mb-0 fw-bold">Postman</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <script>
-    // small utilities
-    document.getElementById('year').textContent = new Date().getFullYear();
+            <h5 class="mt-4 mb-3">Soft Skills & Metodologías</h5>
+            <div>
+                <span class="skill-badge">Metodologías Ágiles (Scrum)</span>
+                <span class="skill-badge">Trabajo en Equipo</span>
+                <span class="skill-badge">Resolución de Problemas</span>
+                <span class="skill-badge">Comunicación Efectiva</span>
+                <span class="skill-badge">Adaptabilidad</span>
+                <span class="skill-badge">Aprendizaje Continuo</span>
+                <span class="skill-badge">Pensamiento Analítico</span>
+            </div>
+        </section>
 
-    // Theme toggle (light/dark)
-    const toggle = document.getElementById('themeToggle');
-    toggle.addEventListener('click',()=>{
-      if(document.documentElement.style.getPropertyValue('--bg')===''){
-        document.documentElement.style.setProperty('--bg','#f8fafc');
-        document.documentElement.style.setProperty('--card','#ffffff');
-        document.documentElement.style.setProperty('--muted','#445369');
-        document.documentElement.style.setProperty('--accent','#0ea5a9');
-        document.documentElement.style.setProperty('--glass','rgba(0,0,0,0.04)');
-        document.body.style.color='#081227';
-      } else {
-        document.documentElement.style.setProperty('--bg','#0b0f13');
-        document.documentElement.style.setProperty('--card','#0f1720');
-        document.documentElement.style.setProperty('--muted','#9aa4b2');
-        document.documentElement.style.setProperty('--accent','#06b6d4');
-        document.documentElement.style.setProperty('--glass','rgba(255,255,255,0.03)');
-        document.body.style.color='#e6eef6';
-      }
-    });
+        <!-- Timeline Section -->
+        <section id="timeline" class="mb-5">
+            <h2 class="section-title">Línea de Tiempo</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Enero 2025</div>
+                    <h6>Culminación de Pasantía - Grupo MOSS</h6>
+                    <p class="text-muted">Finalización exitosa del sistema de gestión de eventos deportivos con Node.js y React</p>
+                </div>
 
-    // Contact form: uses mailto to open email client (simple, no backend)
-    function handleContact(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      const subject = encodeURIComponent('Contacto desde portafolio: ' + name);
-      const body = encodeURIComponent('Nombre: '+name+'\nEmail: '+email+'\n\n'+message);
-      window.location.href = `mailto:williansmalque76@gmail.com?subject=${subject}&body=${body}`;
-    }
+                <div class="timeline-item">
+                    <div class="timeline-date">Diciembre 2024</div>
+                    <h6>Inicio Pasantía - Grupo MOSS S.R.L</h6>
+                    <p class="text-muted">Pasante en Innovación e Investigación (Remoto)</p>
+                </div>
 
-    // Fetch top repos from GitHub API and inject into DOM
-    async function loadRepos(){
-      const user='WilliansMalque';
-      try{
-        const res = await fetch(`https://api.github.com/users/${user}/repos?per_page=100&sort=pushed`);
-        if(!res.ok) throw new Error('GitHub API error');
-        const repos = await res.json();
-        // filter out forked and select top 6 by stargazers_count or recent
-        const filtered = repos.filter(r=>!r.fork).sort((a,b)=>b.stargazers_count - a.stargazers_count).slice(0,6);
-        const container = document.getElementById('projects');
-        if(filtered.length===0){ container.innerHTML='<p class="muted">No hay proyectos públicos destacados aún.</p>'; return; }
-        filtered.forEach(r=>{
-          const div = document.createElement('article'); div.className='project';
-          const name = document.createElement('h3'); name.innerHTML=`<a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a>`;
-          const desc = document.createElement('p'); desc.className='muted small'; desc.textContent = r.description || 'Descripción breve del proyecto.';
-          const tags = document.createElement('div'); tags.className='tags';
-          const lang = document.createElement('span'); lang.className='tag'; lang.textContent = r.language || '—';
-          const stars = document.createElement('span'); stars.className='tag'; stars.textContent = `★ ${r.stargazers_count}`;
-          tags.appendChild(lang); tags.appendChild(stars);
-          div.appendChild(name); div.appendChild(desc); div.appendChild(tags);
-          container.appendChild(div);
-        })
-      }catch(err){
-        console.error(err); document.getElementById('projects').innerHTML='<p class="muted">Error cargando proyectos.</p>'
-      }
-    }
-    loadRepos();
+                <div class="timeline-item">
+                    <div class="timeline-date">Agosto 2024</div>
+                    <h6>Culminación Pasantía - Fibertel Networks</h6>
+                    <p class="text-muted">Desarrollo exitoso de réplica web en WordPress</p>
+                </div>
 
-    // simple fade-up activation
-    window.addEventListener('load',()=>{document.querySelectorAll('.fade-up').forEach((el,i)=>{el.style.animationDelay=(i*80)+'ms'})})
-  </script>
-</body>
-</html>
+                <div class="timeline-item">
+                    <div class="timeline-date">Julio 2024</div>
+                    <h6>Inicio Pasantía - Fibertel Networks S.A.C</h6>
+                    <p class="text-muted">Pasante en Innovación e Investigación, Arequipa</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2022 - 2025</div>
+                    <h6>Estudios en TECSUP</h6>
+                    <p class="text-muted">Carrera de Diseño y Desarrollo de Software - Egresado</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Septiembre 2022</div>
+                    <h6>ONPE - Coordinador de Mesa</h6>
+                    <p class="text-muted">Elecciones Regionales y Municipales 2022</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Enero 2019</div>
+                    <h6>ONPE - Coordinador de Mesa</h6>
+                    <p class="text-muted">Elecciones Congresales Extraordinarias 2019</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mb-5">
+            <h2 class="section-title">Contacto</h2>
+            <div class="card-custom">
+                <div class="card-body p-4 text-center">
+                    <h4 class="mb-4">¿Interesado en trabajar juntos?</h4>
+                    <p class="lead mb-4">Estoy disponible para nuevas oportunidades y colaboraciones</p>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <i class="bi bi-envelope-fill" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <p class="mb-0 mt-2">
+                                <a href="mailto:williansmalque76@gmail.com" class="text-decoration-none">williansmalque76@gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="bi bi-telephone-fill" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <p class="mb-0 mt-2">+51 940 185 343</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="bi bi-geo-alt-fill" style="font-size: 2rem; color: var(--secondary-color);"></i>
+                            <p class="mb-0 mt-2">Arequipa, Perú</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <a href="mailto:williansmalque76@gmail.com" class="contact-btn me-2">
+                            <i class="bi bi-envelope me-2"></i>Enviar Email
+                        </a>
+                        <a href="https://www.linkedin.com/in/willians-malque" target="_blank" class="contact-btn" style="background: #0077b5;">
+                            <i class="bi bi-linkedin me-2"></i>Conectar en LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach
